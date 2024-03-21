@@ -27,7 +27,7 @@
 		<link rel="shortcut icon" href="{{ asset('assets/img/ico.png') }}">
 
 		{% block javascripts %}
-			{{ importmap() }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
     <script>
         window.isMobile = (function() {
             var check = false;
