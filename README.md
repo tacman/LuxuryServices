@@ -1,4 +1,11 @@
+#  Tacman notes
+
+No license in github, assets are stored on a cdn, not in the project, e.g.
+
+https://luxury.wip/assets/css/main.css
+
 # LuxuryServices 💼
+
 
 LuxuryServices is a platform designed to simulate a professional recruitment consultancy environment, offering services for the recruitment of permanent, contract, and temporary positions. It serves as a learning project to understand the dynamics of matching job seekers with employers effectively.
 
