@@ -35,11 +35,7 @@ class ChangePasswordOnProfileFormType extends AbstractType
                 ],
                 'first_options' => [
                     'constraints' => [
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters.',
-                            'max' => 4096,
-                        ]),
+                        new Length(min: 6, max: 4096, minMessage: 'Your password should be at least {{ limit }} characters.'),
                     ],
                     'label' => 'New password',
                 ],

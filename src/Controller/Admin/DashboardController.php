@@ -22,15 +22,16 @@ use App\Repository\CandidateRepository;
 use App\Repository\ContactRepository;
 use App\Repository\CustomerRepository;
 use App\Repository\JobOfferRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
+#[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
 
@@ -46,7 +47,6 @@ class DashboardController extends AbstractDashboardController
     ) {
     }
 
-    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
         $messagesChart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
@@ -166,22 +166,22 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa-solid fa-gauge-high');
         yield MenuItem::section('MAIN');
-        yield MenuItem::linkToCrud('Messages', 'fa-solid fa-envelope', Contact::class);
-        yield MenuItem::linkToCrud('Applications', 'fa-solid fa-clipboard', Application::class);
-        yield MenuItem::linkToCrud('Job offers', 'fas fa-briefcase', JobOffer::class);
-        yield MenuItem::linkToCrud('Customers', 'fa-solid fa-user-tie', Customer::class);
-        yield MenuItem::linkToCrud('Candidates', 'fa-solid fa-address-card', Candidate::class);
+        yield MenuItem::linkTo(ContactCrudController::class, 'Messages', 'fa-solid fa-envelope');
+        yield MenuItem::linkTo(ApplicationCrudController::class, 'Applications', 'fa-solid fa-clipboard');
+        yield MenuItem::linkTo(JobOfferCrudController::class, 'Job offers', 'fas fa-briefcase');
+        yield MenuItem::linkTo(CustomerCrudController::class, 'Customers', 'fa-solid fa-user-tie');
+        yield MenuItem::linkTo(CandidateCrudController::class, 'Candidates', 'fa-solid fa-address-card');
         yield MenuItem::section('MISC');
-        yield MenuItem::linkToCrud('Users', 'fa-solid fa-user', User::class);
-        yield MenuItem::linkToCrud('Notes', 'fa-solid fa-note-sticky', AdminNotes::class)->setController(AdminNotesCrudController::class);
-        yield MenuItem::linkToCrud('Medias', 'fas fa-floppy-disk', Media::class);
+        yield MenuItem::linkTo(UserCrudController::class, 'Users', 'fa-solid fa-user');
+        yield MenuItem::linkTo(AdminNotesCrudController::class, 'Notes', 'fa-solid fa-note-sticky');
+        yield MenuItem::linkTo(MediaCrudController::class, 'Medias', 'fas fa-floppy-disk');
         yield MenuItem::subMenu('Select Menu Items', 'fa-solid fa-tags')->setSubItems([
-            MenuItem::linkToCrud('Application Status', 'fa-solid fa-tag', ApplicationStatus::class),
-            MenuItem::linkToCrud('Contact Status', 'fa-solid fa-tag', ContactStatus::class),
-            MenuItem::linkToCrud('Experience', 'fa-solid fa-tag', Experience::class),
-            MenuItem::linkToCrud('Genders', 'fa-solid fa-tag', GenderList::class),
-            MenuItem::linkToCrud('Job Categories', 'fa-solid fa-tag', JobCategory::class),
-            MenuItem::linkToCrud('Job Types', 'fa-solid fa-tag', JobType::class),
+            MenuItem::linkTo(ApplicationStatusCrudController::class, 'Application Status', 'fa-solid fa-tag'),
+            MenuItem::linkTo(ContactStatusCrudController::class, 'Contact Status', 'fa-solid fa-tag'),
+            MenuItem::linkTo(ExperienceCrudController::class, 'Experience', 'fa-solid fa-tag'),
+            MenuItem::linkTo(GenderListCrudController::class, 'Genders', 'fa-solid fa-tag'),
+            MenuItem::linkTo(JobCategoryCrudController::class, 'Job Categories', 'fa-solid fa-tag'),
+            MenuItem::linkTo(JobTypeCrudController::class, 'Job Types', 'fa-solid fa-tag'),
         ]);
     }
 }

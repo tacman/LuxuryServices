@@ -50,14 +50,26 @@
 							<div class="card card-panel">
 								<h3 class="text-extrabold">Log in to your account</h3>
 
+                                {% if app.debug %}
+                                    <div class="alert alert-info" id="demo-credentials">
+                                        <strong>Development accounts</strong>
+                                        <p>Password for every account: <code>password</code></p>
+                                        <ul class="text-left">
+                                            <li><strong>Administrator</strong>: <code>admin</code></li>
+                                            <li><strong>Candidate</strong>: <code>candidate</code></li>
+                                            <li><strong>Candidate</strong>: <code>marcus</code></li>
+                                        </ul>
+                                    </div>
+                                {% endif %}
+
 								<form action="{{ path('app_login') }}" id="login-form" role="form" method="post" accept-char="UTF-8" autocomplete="off" data-parsley-validate>
 
 									<input type="hidden" name="_token" value="">
 
 									<div class="input-field">
-										<input type="email" id="email" name="_username" value="{{ last_username }}" required autofocus data-parsley-trigger="change" data-parsley-error-message="A valid email address is required.">
-										<label for="email">Email</label>
-										<span class="help-block">Type your email address.</span>
+										<input type="text" id="username" name="_username" value="{{ last_username }}" required autofocus autocomplete="username">
+										<label for="username">Account name</label>
+										<span class="help-block">Enter your account name.</span>
 									</div>
 									<div class="input-field">
 										<input type="password" id="password" name="_password" required data-parsley-trigger="change" data-parsley-error-message="The password must be at least 6 characters.">

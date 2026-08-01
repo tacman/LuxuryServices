@@ -28,9 +28,7 @@ class RegistrationFormType extends AbstractType
                     'data-parsley-error-message' => 'A valid email address is required.',
                 ],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter an email address',
-                    ]),
+                    new NotBlank(message: 'Please enter an email address'),
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -41,9 +39,7 @@ class RegistrationFormType extends AbstractType
                     'id' => 'accept-terms',
                 ],
                 'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ])
+                    new IsTrue(message: 'You should agree to our terms.')
                 ],
             ])
             ->add('password', RepeatedType::class, [
@@ -51,14 +47,8 @@ class RegistrationFormType extends AbstractType
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        'max' => 50,
-                    ]),
+                    new NotBlank(message: 'Please enter a password'),
+                    new Length(min: 6, max: 50, minMessage: 'Your password should be at least {{ limit }} characters'),
                 ],
                 'first_options'  => [
                     'label' => 'Password',

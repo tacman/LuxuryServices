@@ -20,15 +20,11 @@ class MediaType extends AbstractType
                 "empty_data" => '',
                 'mapped' => false,
                 'constraints' => [
-                    new File([
-                        'maxSize' => '5120k',
-                        'mimeTypes' => [
+                    new File(maxSize: '5120k', mimeTypes: [
                             'application/pdf',
                             'application/x-pdf',
                             'image/*'
-                        ],
-                        'mimeTypesMessage' => 'The format is not valid',
-                    ])
+                        ], mimeTypesMessage: 'The format is not valid')
                 ],
             ])
         ;

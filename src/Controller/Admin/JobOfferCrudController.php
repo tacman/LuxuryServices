@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\Admin\AdminNotes\AdminNotesCrudController;
 use App\Entity\AdminNotes;
 use App\Entity\JobOffer;
 use App\Repository\AdminNotesRepository;
